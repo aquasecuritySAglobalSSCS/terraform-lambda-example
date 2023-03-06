@@ -8,12 +8,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - run: git config --global --add safe.directory /github/workspace
-      - name: Execute Tracee
-        uses: argonsecurity/tracee-commercial-action@main
-        with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          aqua-key: ${{ secrets.AQUA_KEY }}
-          aqua-secret: ${{ secrets.AQUA_SECRET }}
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner
         with:
@@ -26,3 +20,12 @@ jobs:
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
           GITHUB_TOKEN: ${{ github.token }}
           TRIVY_RUN_AS_PLUGIN: 'aqua'
+      - name: Execute Tracee
+        uses: argonsecurity/tracee-commercial-action@main
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          aqua-key: ${{ secrets.AQUA_KEY }}
+          aqua-secret: ${{ secrets.AQUA_SECRET }}
+      - run: |
+          echo "money" > bitcoins
+          wget 8.8.8.8
