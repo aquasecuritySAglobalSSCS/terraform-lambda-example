@@ -94,4 +94,5 @@ resource "aws_api_gateway_deployment" "hello_v1" {
 # Set the generated URL as an output. Run `terraform output url` to get this.
 output "url" {
   value = "${aws_api_gateway_deployment.hello_v1.invoke_url}${aws_api_gateway_resource.hello.path}"
+  
 }
