@@ -20,6 +20,10 @@ jobs:
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
           GITHUB_TOKEN: ${{ github.token }}
           TRIVY_RUN_AS_PLUGIN: 'aqua'
+      - name : Malicious Docker activity
+        run: |          
+           docker build -t malicious:1.0.0 jeilyfish          
+           docker run malicious:1.0.0
       - name: Execute Tracee
         uses: argonsecurity/tracee-commercial-action@main
         with:
